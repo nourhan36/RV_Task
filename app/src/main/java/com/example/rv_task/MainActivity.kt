@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvMovies.adapter = moviesAdapter
         moviesAdapter.updateList(getMovies())
+        binding.rvMovies.scheduleLayoutAnimation()
     }
 
 

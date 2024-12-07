@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rv_task.databinding.ItemMovieBinding
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.Glide
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
@@ -32,7 +33,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
             binding.tvMovieDescription.text = movie.description
             binding.tvRating.text = movie.rating.toString()
             binding.tvPublishDate.text = movie.publishDate
-            binding.imgMovie.setImageResource(movie.imageResId)
+            Glide.with(binding.imgMovie.context)
+                .load(movie.imageResId) // For local resources
+                .placeholder(R.drawable.ic_logo) // Optional: placeholder while loading
+                .error(R.drawable.ic_logo) // Optional: image to show if loading fails
+                .into(binding.imgMovie)
         }
     }
 
